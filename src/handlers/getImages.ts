@@ -1,7 +1,7 @@
 import { IRequest } from "itty-router";
 
 export default function getImages(request: IRequest) {
-    const images = [
+    let images = [
         {
             "id": 1,
             "url": "https://photos.google.com/1",
@@ -18,5 +18,9 @@ export default function getImages(request: IRequest) {
             "author": "Santhi"
         }
     ]
+    const count = request.query["count"]
+    if (count) {
+        images = images.slice(0, parseInt(count[0]));
+    }
     return new Response(JSON.stringify(images), { headers: { "content-type": "application/json" }, status: 200 });
 }
