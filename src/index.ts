@@ -11,11 +11,13 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 import { Router } from "itty-router";
+import createImage from "./handlers/createImage";
 import getImages from "./handlers/getImages";
 import getImage from "./handlers/getImage";
 
 const router = Router();
 router.get("/", () => new Response("Welcome to Photo Service!", { status: 200 }))
+	.post("/images", createImage)
 	.get("/images", getImages)
 	.get("/images/:id", getImage)
 	.get("/ping", () => new Response("pong", { status: 200 }))

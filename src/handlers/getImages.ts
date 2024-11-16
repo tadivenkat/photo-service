@@ -1,7 +1,7 @@
 import { IRequest } from "itty-router";
 import images from "../data/images";
 
-export default function getImages(request: IRequest) {
+const getImages = (request: IRequest) => {
     let imagesCopy = images;
     const count = request.query["count"]
     if (count) {
@@ -9,3 +9,5 @@ export default function getImages(request: IRequest) {
     }
     return new Response(JSON.stringify(imagesCopy), { headers: { "content-type": "application/json" }, status: 200 });
 }
+
+export default getImages;

@@ -1,7 +1,7 @@
 import { IRequest } from "itty-router";
 import images from "../data/images";
 
-export default function getImage(request: IRequest) {
+const getmage = (request: IRequest) => {
     const id = request.params.id;
     const image = images.find(image => image.id == parseInt(id));
     if (image) {
@@ -9,3 +9,5 @@ export default function getImage(request: IRequest) {
     }
     return new Response("Image not found", { status: 404 });
 }
+
+export default getmage;

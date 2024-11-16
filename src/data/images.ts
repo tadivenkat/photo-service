@@ -1,4 +1,6 @@
-const images = [
+import IImage from "./image";
+
+const images: IImage[] = [
     {
         "id": 1,
         "url": "https://photos.google.com/1",
