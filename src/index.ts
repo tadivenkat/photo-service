@@ -11,14 +11,20 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 import { Router } from "itty-router";
+import getImages from "./handlers/getImages";
 
 const router = Router();
 router.get("/", () => new Response("Welcome to Photo Service!", { status: 200 }))
+	.get("/images", getImages)
 	.get("/ping", () => new Response("pong", { status: 200 }))
 	.get("*", () => new Response("Not found", { status: 404 }));
 
+export interface Env {
+		// MY_KV_NAMESPACE: KVNamespace;
+		}
+
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		return router.fetch(request, env, ctx);
 	},
 } satisfies ExportedHandler<Env>;
