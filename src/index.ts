@@ -12,8 +12,13 @@
  */
 import { Router } from "itty-router";
 
+const router = Router();
+router.get("/", () => new Response("Welcome to Photo Service!", { status: 200 }))
+	.get("/ping", () => new Response("pong", { status: 200 }))
+	.get("*", () => new Response("Not found", { status: 404 }));
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+		return router.fetch(request, env, ctx);
 	},
 } satisfies ExportedHandler<Env>;
