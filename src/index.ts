@@ -12,10 +12,12 @@
  */
 import { Router } from "itty-router";
 import getImages from "./handlers/getImages";
+import getImage from "./handlers/getImage";
 
 const router = Router();
 router.get("/", () => new Response("Welcome to Photo Service!", { status: 200 }))
 	.get("/images", getImages)
+	.get("/images/:id", getImage)
 	.get("/ping", () => new Response("pong", { status: 200 }))
 	.get("*", () => new Response("Not found", { status: 404 }));
 
