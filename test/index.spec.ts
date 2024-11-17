@@ -58,4 +58,35 @@ describe('Photo-Service worker', () => {
 			expect(image.id).toEqual(1);
 		});
 	});
+
+	describe("POST /images", () => {
+		it("should return 201 status code", async () => {
+			const response = await SELF.fetch("https://example.com/images", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					"url": "https://example.com/image",
+					"author": "John Doe"
+				})
+			});
+			expect(response.status).toEqual(201);
+		});
+		it("should return the created image", async () => {
+			const response = await SELF.fetch("https://example.com/images", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					"url": "https://example.com/image",
+					"author": "John Doe"
+				})
+			});
+			const image : IImage = await response.json();
+			expect(image.url).toEqual("https://example.com/image");
+			expect(image.author).toEqual("John Doe");
+		});
+	});
 });
