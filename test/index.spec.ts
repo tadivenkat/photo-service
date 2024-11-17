@@ -67,8 +67,13 @@ describe('Photo-Service worker', () => {
 					"Content-Type": "application/json"
 				},
 				body: JSON.stringify({
-					"url": "https://example.com/image",
-					"author": "John Doe"
+					"category_id": 2,
+					"user_id": 100,
+					"image_url": "https://placehold.co/600x400",
+					"format": "PNG",
+					"resolution": "100x100",
+					"title": "Example 4",
+					"file_size_bytes": 500
 				})
 			});
 			expect(response.status).toEqual(201);
@@ -80,13 +85,17 @@ describe('Photo-Service worker', () => {
 					"Content-Type": "application/json"
 				},
 				body: JSON.stringify({
-					"url": "https://example.com/image",
-					"author": "John Doe"
+					"category_id": 2,
+					"user_id": 100,
+					"image_url": "https://placehold.co/600x400",
+					"format": "PNG",
+					"resolution": "100x100",
+					"title": "Example 4",
+					"file_size_bytes": 500
 				})
 			});
 			const image : IImage = await response.json();
-			expect(image.url).toEqual("https://example.com/image");
-			expect(image.author).toEqual("John Doe");
+			expect(image.image_url).toEqual("https://placehold.co/600x400");
 		});
 	});
 });

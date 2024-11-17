@@ -1,4 +1,5 @@
 interface IImage {
+    id?: number;
     category_id: number;
     user_id: number;
     image_url: string;
