@@ -1,6 +1,6 @@
 import { IRequest } from "itty-router";
 import images from "../data/images";
-import IImage from "../data/image";
+import IImage from "../data/iimage";
 
 const createImage = async function(request: IRequest) {
     const imageFromRequest : IImage = await request.json();
