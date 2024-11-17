@@ -10,6 +10,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+import {Env} from "./env";
 import { Router } from "itty-router";
 import createImage from "./handlers/createImage";
 import getImages from "./handlers/getImages";
