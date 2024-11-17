@@ -27,4 +27,11 @@ describe('Photo-Service worker', () => {
 		const response = await SELF.fetch('https://example.com');
 		expect(await response.text()).toMatchInlineSnapshot(`"Welcome to Photo Service!"`);
 	});
+	
+	describe("GET /images", () => {
+		it("should return 200 status code", async () => {
+			const response = await SELF.fetch("https://example.com/images");
+			expect(response.status).toEqual(200);
+		});
+	});
 });
