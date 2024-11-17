@@ -7,8 +7,8 @@ import worker from '../src/index';
 // `Request` to pass to `worker.fetch()`.
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
-describe('Hello World worker', () => {
-	it('responds with Hello World! (unit style)', async () => {
+describe('Photo-Service worker', () => {
+	it('responds with Welcome message (unit style)', async () => {
 		const request = new IncomingRequest('http://example.com');
 		// Create an empty context to pass to `worker.fetch()`.
 		const ctx = createExecutionContext();
@@ -18,7 +18,12 @@ describe('Hello World worker', () => {
 		expect(await response.text()).toMatchInlineSnapshot(`"Welcome to Photo Service!"`);
 	});
 
-	it('responds with Hello World! (integration style)', async () => {
+	it('responds with 404 status code when an invalid path is requested', async () => {
+		const response = await SELF.fetch('https://example.com/invalid-path');
+		expect(response.status).toEqual(404);
+	});
+
+	it('responds with Welcome message (integration style)', async () => {
 		const response = await SELF.fetch('https://example.com');
 		expect(await response.text()).toMatchInlineSnapshot(`"Welcome to Photo Service!"`);
 	});
